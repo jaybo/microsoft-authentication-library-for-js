@@ -14,10 +14,13 @@ import { ClientAuthError } from "../error/ClientAuthError";
 export class ScopeSet {
     // Client ID of application
     private clientId: string;
+
     // Scopes as a Set of strings
     private scopes: Set<string>;
+
     // Original scopes passed to constructor. Usually used for caching or telemetry.
     private originalScopes: Set<string>;
+
     // Boolean denoting whether scopes are required. Usually used for validation.
     private scopesRequired: boolean;
 
@@ -27,7 +30,7 @@ export class ScopeSet {
         // Filter empty string and null/undefined array items
         const filteredInput = inputScopes ? StringUtils.removeEmptyStringsFromArray(inputScopes) : inputScopes;
         // Validate and filter scopes (validate function throws if validation fails)
-        this.validateInputScopes(filteredInput);
+        ScopeSet.validateInputScopes(filteredInput, this.scopesRequired);
         const scopeArr = filteredInput ? StringUtils.trimAndConvertArrayEntriesToLowerCase([...filteredInput]) : [];
         this.scopes = new Set<string>(scopeArr);
         if (!this.scopesRequired) {
@@ -39,9 +42,9 @@ export class ScopeSet {
 
     /**
      * Factory method to create ScopeSet from space-delimited string
-     * @param inputScopeString 
-     * @param appClientId 
-     * @param scopesRequired 
+     * @param inputScopeString
+     * @param appClientId
+     * @param scopesRequired
      */
     static fromString(inputScopeString: string, appClientId: string, scopesRequired: boolean): ScopeSet {
         inputScopeString = inputScopeString || "";
@@ -66,8 +69,8 @@ export class ScopeSet {
      * @param {Array<string>} inputScopes - Developer requested permissions. Not all scopes are guaranteed to be included in the access token returned.
      * @param {boolean} scopesRequired - Boolean indicating whether the scopes array is required or not
      */
-    private validateInputScopes(inputScopes: Array<string>): void {
-        if (this.scopesRequired) {
+    static validateInputScopes(inputScopes: Array<string>, scopesRequired: boolean): void {
+        if (scopesRequired) {
             // Check if scopes are required but not given or is an empty array
             if (!inputScopes || inputScopes.length < 1) {
                 throw ClientConfigurationError.createEmptyScopesArrayError(inputScopes);
@@ -82,7 +85,7 @@ export class ScopeSet {
 
     /**
      * Check if a given scope is present in this set of scopes.
-     * @param scope 
+     * @param scope
      */
     containsScope(scope: string): boolean {
         return !StringUtils.isEmpty(scope) ? this.scopes.has(scope) : false;
@@ -90,7 +93,7 @@ export class ScopeSet {
 
     /**
      * Check if a set of scopes is present in this set of scopes.
-     * @param scopeSet 
+     * @param scopeSet
      */
     containsScopeSet(scopeSet: ScopeSet): boolean {
         if (!scopeSet) {
@@ -101,7 +104,7 @@ export class ScopeSet {
 
     /**
      * Appends single scope if passed
-     * @param newScope 
+     * @param newScope
      */
     appendScope(newScope: string): void {
         if (StringUtils.isEmpty(newScope)) {
@@ -112,7 +115,7 @@ export class ScopeSet {
 
     /**
      * Appends multiple scopes if passed
-     * @param newScopes 
+     * @param newScopes
      */
     appendScopes(newScopes: Array<string>): void {
         try {
@@ -125,7 +128,7 @@ export class ScopeSet {
 
     /**
      * Removes element from set of scopes.
-     * @param scope 
+     * @param scope
      */
     removeScope(scope: string): void {
         if (StringUtils.isEmpty(scope)) {
@@ -136,7 +139,7 @@ export class ScopeSet {
 
     /**
      * Combines an array of scopes with the current set of scopes.
-     * @param otherScopes 
+     * @param otherScopes
      */
     unionScopeSets(otherScopes: ScopeSet): Set<string> {
         if (!otherScopes) {
@@ -147,7 +150,7 @@ export class ScopeSet {
 
     /**
      * Check if scopes intersect between this set and another.
-     * @param otherScopes 
+     * @param otherScopes
      */
     intersectingScopeSets(otherScopes: ScopeSet): boolean {
         if (!otherScopes) {

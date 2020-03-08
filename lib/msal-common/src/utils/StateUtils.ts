@@ -8,12 +8,12 @@ import { Constants } from "./Constants";
 /**
  * Class which provides helpers for OAuth 2.0 protocol specific values
  */
-export class ProtocolUtils {
+export class StateUtils {
 
     /**
      * Appends user state with random guid, or returns random guid.
-     * @param userState 
-     * @param randomGuid 
+     * @param userState
+     * @param randomGuid
      */
     static setRequestState(userState: string, randomGuid: string): string {
         return !StringUtils.isEmpty(userState) ? `${randomGuid}${Constants.RESOURCE_DELIM}${userState}` : randomGuid;

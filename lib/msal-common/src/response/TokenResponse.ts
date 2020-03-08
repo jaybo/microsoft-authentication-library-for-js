@@ -4,7 +4,7 @@
  */
 import { AuthResponse } from "./AuthResponse";
 import { Account } from "../account/Account";
-import { StringDict } from "../utils/MsalTypes";
+import { StringDict } from "../types/MsalTypes";
 
 /**
  * TokenResponse type returned by library containing id, access and/or refresh tokens.

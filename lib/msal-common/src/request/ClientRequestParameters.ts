@@ -2,7 +2,7 @@
  * Copyright (c) Microsoft Corporation. All rights reserved.
  * Licensed under the MIT License.
  */
-import { StringDict } from "../utils/MsalTypes";
+import { StringDict } from "../types/MsalTypes";
 
 /**
  * ClientRequestParameters passed by user to retrieve a token from the server.

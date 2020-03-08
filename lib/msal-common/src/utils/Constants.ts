@@ -67,7 +67,7 @@ export enum PersistentCacheKeys {
 };
 
 /**
- * List of pre-established trusted host URLs. 
+ * List of pre-established trusted host URLs.
  */
 export const AADTrustedHostList: string[] = [
     "login.windows.net",
@@ -172,3 +172,15 @@ export const BlacklistedEQParams = [
     SSOTypes.SID,
     SSOTypes.LOGIN_HINT
 ];
+
+/**
+ * we considered making this "enum" in the request instead of string, however it looks like the allowed list of
+ * prompt values kept changing over past couple of years. There are some undocumented prompt values for some
+ * internal partners too, hence the choice of generic "string" type instead of the "enum"
+ */
+export const Prompt = {
+    LOGIN: "login",
+    SELECT_ACCOUNT: "select_account",
+    CONSENT: "consent",
+    NONE: "none",
+};

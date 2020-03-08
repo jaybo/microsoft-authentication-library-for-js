@@ -1,35 +1,35 @@
 import { expect } from "chai";
-import { ProtocolUtils } from "../../src/utils/ProtocolUtils";
+import { StateUtils } from "../../src/utils/StateUtils";
 import { RANDOM_TEST_GUID } from "./StringConstants";
 import { Constants } from "../../src";
 
-describe("ProtocolUtils.ts Class Unit Tests", () => {
+describe("StateUtils.ts Class Unit Tests", () => {
 
     it("setRequestState() appends random GUID to given state", () => {
         const testState = "testState";
-        const requestState = ProtocolUtils.setRequestState(testState, RANDOM_TEST_GUID);
+        const requestState = StateUtils.setRequestState(testState, RANDOM_TEST_GUID);
         expect(requestState).to.be.eq(`${RANDOM_TEST_GUID}${Constants.RESOURCE_DELIM}${testState}`);
     });
 
     it("setRequestState() only creates random GUID", () => {
-        const requestState = ProtocolUtils.setRequestState("", RANDOM_TEST_GUID);
+        const requestState = StateUtils.setRequestState("", RANDOM_TEST_GUID);
         expect(requestState).to.be.eq(`${RANDOM_TEST_GUID}`);
     });
 
     it("getUserRequestState() returns blank string if serverResponseState is null or empty", () => {
-        expect(ProtocolUtils.getUserRequestState("")).to.be.empty;
-        expect(ProtocolUtils.getUserRequestState(null)).to.be.empty;
+        expect(StateUtils.getUserRequestState("")).to.be.empty;
+        expect(StateUtils.getUserRequestState(null)).to.be.empty;
     });
 
     it("getUserRequestState() returns empty string if no resource delimiter found in state string", () => {
         const testState = "testState";
         const requestState2 = `${testState}`;
-        expect(ProtocolUtils.getUserRequestState(requestState2)).to.be.empty;
+        expect(StateUtils.getUserRequestState(requestState2)).to.be.empty;
     });
 
     it("getUserRequestState() correctly splits the state by the resource delimiter", () => {
         const testState = "testState";
         const requestState = `${RANDOM_TEST_GUID}${Constants.RESOURCE_DELIM}${testState}`;
-        expect(ProtocolUtils.getUserRequestState(requestState)).to.be.eq(testState);
+        expect(StateUtils.getUserRequestState(requestState)).to.be.eq(testState);
     });
 });

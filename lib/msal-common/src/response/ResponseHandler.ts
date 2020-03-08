@@ -8,7 +8,7 @@ import { ServerAuthorizationTokenResponse } from "../server/ServerAuthorizationT
 import { ScopeSet } from "../request/ScopeSet";
 import { buildClientInfo, ClientInfo } from "../account/ClientInfo";
 import { Account } from "../account/Account";
-import { ProtocolUtils } from "../utils/ProtocolUtils";
+import { StateUtils } from "../utils/StateUtils";
 import { ICrypto } from "../crypto/ICrypto";
 import { ICacheStorage } from "../cache/ICacheStorage";
 import { TokenResponse } from "./TokenResponse";
@@ -278,7 +278,7 @@ export class ResponseHandler {
         }
 
         // Return user set state in the response
-        tokenResponse.userRequestState = ProtocolUtils.getUserRequestState(state);
+        tokenResponse.userRequestState = StateUtils.getUserRequestState(state);
 
         this.cacheManager.resetTempCacheItems(state);
         if (!cachedAccount || !tokenResponse.account || Account.compareAccounts(cachedAccount, tokenResponse.account)) {

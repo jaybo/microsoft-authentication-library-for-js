@@ -11,9 +11,9 @@ import { IdToken } from "../account/IdToken";
 import { AuthenticationParameters, validateClaimsRequest } from "../request/AuthenticationParameters";
 import { ClientConfigurationError } from "../error/ClientConfigurationError";
 import { StringUtils } from "../utils/StringUtils";
-import { ProtocolUtils } from "../utils/ProtocolUtils";
+import { StateUtils } from "../utils/StateUtils";
 import { Constants, BlacklistedEQParams, SSOTypes, PromptValue, AADServerParamKeys } from "../utils/Constants";
-import { StringDict } from "../utils/MsalTypes";
+import { StringDict } from "../types/MsalTypes";
 
 /**
  * This class extends the ServerRequestParameters class. This class validates URL request parameters, checks for SSO and generates required URL.
@@ -74,7 +74,7 @@ export class ServerCodeRequestParameters {
 
         // Set random vars
         const randomGuid = this.cryptoObj.createNewGuid();
-        this.state = ProtocolUtils.setRequestState(this.userRequest && this.userRequest.userRequestState, randomGuid);
+        this.state = StateUtils.setRequestState(this.userRequest && this.userRequest.userRequestState, randomGuid);
         this.nonce = this.cryptoObj.createNewGuid();
         this.correlationId = this.userRequest.correlationId || this.cryptoObj.createNewGuid();
     }
