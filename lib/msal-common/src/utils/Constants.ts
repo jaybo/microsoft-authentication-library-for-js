@@ -174,13 +174,20 @@ export const BlacklistedEQParams = [
 ];
 
 /**
- * we considered making this "enum" in the request instead of string, however it looks like the allowed list of
- * prompt values kept changing over past couple of years. There are some undocumented prompt values for some
- * internal partners too, hence the choice of generic "string" type instead of the "enum"
+ * Request Type
  */
-export const Prompt = {
-    LOGIN: "login",
-    SELECT_ACCOUNT: "select_account",
-    CONSENT: "consent",
-    NONE: "none",
+export enum REQUEST_TYPE {
+    AUTHORIZATION_CODE_URL = 101,
+    AUTHORIZATION_CODE = 102,
+    DEVICE_CODE = 103,
+    INTERACTIVE = 104,
+    SILENT = 105
+};
+
+/**
+ * HTTP Request types supported by MSAL.
+ */
+export enum HTTP_REQUEST_TYPE {
+    GET = "GET",
+    POST = "POST"
 };

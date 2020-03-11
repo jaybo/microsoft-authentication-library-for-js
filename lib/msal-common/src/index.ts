@@ -1,5 +1,6 @@
 // App Auth Modules and Configuration
 export { PublicClient } from "./client/PublicClient";
+export { AuthorizationCodeFlow } from "./client/AuthorizationCodeFlow";
 export { PublicClientConfiguration, AuthOptions } from "./config/PublicClientConfiguration";
 export { SystemOptions, LoggerOptions, TelemetryOptions } from "./config/Configuration";
 // Account

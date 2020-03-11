@@ -24,20 +24,25 @@ export class ScopeSet {
     // Boolean denoting whether scopes are required. Usually used for validation.
     private scopesRequired: boolean;
 
-    constructor(inputScopes: Array<string>, appClientId: string, scopesRequired: boolean) {
+    constructor(inputScopes: Array<string>, appClientId: string, scopesRequired: boolean, authCode?: boolean) {
+
         this.clientId = appClientId;
         this.scopesRequired = scopesRequired;
+
         // Filter empty string and null/undefined array items
         const filteredInput = inputScopes ? StringUtils.removeEmptyStringsFromArray(inputScopes) : inputScopes;
+
         // Validate and filter scopes (validate function throws if validation fails)
         ScopeSet.validateInputScopes(filteredInput, this.scopesRequired);
         const scopeArr = filteredInput ? StringUtils.trimAndConvertArrayEntriesToLowerCase([...filteredInput]) : [];
         this.scopes = new Set<string>(scopeArr);
-        if (!this.scopesRequired) {
+        if (!authCode && !this.scopesRequired) {
             this.appendScope(this.clientId);
         }
         this.originalScopes = new Set<string>(this.scopes);
-        this.replaceDefaultScopes();
+
+        // add default scopes
+        (!authCode) ? this.replaceDefaultScopes(): this.addDefaultScopes();
     }
 
     /**
@@ -63,6 +68,15 @@ export class ScopeSet {
         }
         this.appendScope(Constants.OFFLINE_ACCESS_SCOPE);
     }
+
+    /**
+     * Replace client id with the default scopes used for token acquisition.
+     */
+    private addDefaultScopes(): void {
+        this.appendScope(Constants.OPENID_SCOPE);
+        this.appendScope(Constants.PROFILE_SCOPE);
+        this.appendScope(Constants.OFFLINE_ACCESS_SCOPE);
+    };
 
     /**
      * Used to validate the scopes input parameter requested  by the developer.
@@ -202,4 +216,15 @@ export class ScopeSet {
         }
         return "";
     }
+
+    /**
+     * Prints scopes into a space-delimited string
+     */
+    static finalScopes(scopes: Array<string>): string {
+        if (scopes) {
+            return scopes.join(" ");
+        }
+        return "";
+    }
+
 }

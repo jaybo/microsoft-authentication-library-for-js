@@ -77,6 +77,7 @@ export const TEST_CONFIG = {
     STATE: "1234",
     TEST_VERIFIER: "Y5LnOOlAWK0kt370Bjm0ZcrW9Sc2pMXR1slip9TFZXoyUV8Y8lCn0WHXyyQ1QcTnALMbrUAj85dC7WIe6gYqc8o8jsHCezP3xiUNB143A5IfwtSfO6Kb8oy7pNqcT9vN",
     TEST_CHALLENGE: "JsjesZmxJwehdhNY9kvyr0QOeSMEvryY_EHZo3BKrqg",
+    TEST_CHALLENGE_METHOD: "SHA256",
     TOKEN_TYPE_BEARER: "Bearer",
     DEFAULT_SCOPES: ["openid", "profile", "offline_access"]
 };
@@ -100,66 +101,66 @@ export const TEST_TENANT_DISCOVERY_RESPONSE = {
     "tenant_discovery_endpoint":"https://login.contoso.com/tenant-id/v2.0/.well-known/openid-configuration"
 };
 
-export const DEFAULT_OPENID_CONFIG_RESPONSE = { 
+export const DEFAULT_OPENID_CONFIG_RESPONSE = {
     "token_endpoint": "https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token",
     "token_endpoint_auth_methods_supported": [
-        "client_secret_post", 
-        "private_key_jwt", 
+        "client_secret_post",
+        "private_key_jwt",
         "client_secret_basic"
     ],
-    "jwks_uri": "https://login.microsoftonline.com/{tenant}/discovery/v2.0/keys", 
+    "jwks_uri": "https://login.microsoftonline.com/{tenant}/discovery/v2.0/keys",
     "response_modes_supported": [
-        "query", 
-        "fragment", 
+        "query",
+        "fragment",
         "form_post"
-    ], 
-    "subject_types_supported": ["pairwise"], 
-    "id_token_signing_alg_values_supported": ["RS256"], 
-    "response_types_supported": ["code", "id_token", "code id_token", "id_token token"], 
-    "scopes_supported": ["openid", "profile", "email", "offline_access"], 
-    "issuer": "https://login.microsoftonline.com/{tenant}/v2.0", 
-    "request_uri_parameter_supported": false, 
-    "userinfo_endpoint": "https://graph.microsoft.com/oidc/userinfo", 
-    "authorization_endpoint": "https://login.microsoftonline.com/{tenant}/oauth2/v2.0/authorize", 
-    "http_logout_supported": true, 
-    "frontchannel_logout_supported": true, 
-    "end_session_endpoint": "https://login.microsoftonline.com/{tenant}/oauth2/v2.0/logout", 
-    "claims_supported": ["sub", "iss", "cloud_instance_name", "cloud_instance_host_name", "cloud_graph_host_name", "msgraph_host", "aud", "exp", "iat", "auth_time", "acr", "nonce", "preferred_username", "name", "tid", "ver", "at_hash", "c_hash", "email"], 
-    "tenant_region_scope": null, 
-    "cloud_instance_name": "microsoftonline.com", 
-    "cloud_graph_host_name": "graph.windows.net", 
-    "msgraph_host": "graph.microsoft.com", 
-    "rbac_url": "https://pas.windows.net" 
+    ],
+    "subject_types_supported": ["pairwise"],
+    "id_token_signing_alg_values_supported": ["RS256"],
+    "response_types_supported": ["code", "id_token", "code id_token", "id_token token"],
+    "scopes_supported": ["openid", "profile", "email", "offline_access"],
+    "issuer": "https://login.microsoftonline.com/{tenant}/v2.0",
+    "request_uri_parameter_supported": false,
+    "userinfo_endpoint": "https://graph.microsoft.com/oidc/userinfo",
+    "authorization_endpoint": "https://login.microsoftonline.com/{tenant}/oauth2/v2.0/authorize",
+    "http_logout_supported": true,
+    "frontchannel_logout_supported": true,
+    "end_session_endpoint": "https://login.microsoftonline.com/{tenant}/oauth2/v2.0/logout",
+    "claims_supported": ["sub", "iss", "cloud_instance_name", "cloud_instance_host_name", "cloud_graph_host_name", "msgraph_host", "aud", "exp", "iat", "auth_time", "acr", "nonce", "preferred_username", "name", "tid", "ver", "at_hash", "c_hash", "email"],
+    "tenant_region_scope": null,
+    "cloud_instance_name": "microsoftonline.com",
+    "cloud_graph_host_name": "graph.windows.net",
+    "msgraph_host": "graph.microsoft.com",
+    "rbac_url": "https://pas.windows.net"
 };
 
-export const ALTERNATE_OPENID_CONFIG_RESPONSE = { 
+export const ALTERNATE_OPENID_CONFIG_RESPONSE = {
     "token_endpoint": "https://login.windows.net/common/oauth2/v2.0/token",
     "token_endpoint_auth_methods_supported": [
-        "client_secret_post", 
-        "private_key_jwt", 
+        "client_secret_post",
+        "private_key_jwt",
         "client_secret_basic"
     ],
-    "jwks_uri": "https://login.windows.net/common/discovery/v2.0/keys", 
+    "jwks_uri": "https://login.windows.net/common/discovery/v2.0/keys",
     "response_modes_supported": [
-        "query", 
-        "fragment", 
+        "query",
+        "fragment",
         "form_post"
-    ], 
-    "subject_types_supported": ["pairwise"], 
-    "id_token_signing_alg_values_supported": ["RS256"], 
-    "response_types_supported": ["code", "id_token", "code id_token", "id_token token"], 
-    "scopes_supported": ["openid", "profile", "email", "offline_access"], 
-    "issuer": "https://login.windows.net/{tenantid}/v2.0", 
-    "request_uri_parameter_supported": false, 
-    "userinfo_endpoint": "https://graph.microsoft.com/oidc/userinfo", 
-    "authorization_endpoint": "https://login.windows.net/common/oauth2/v2.0/authorize", 
-    "http_logout_supported": true, 
-    "frontchannel_logout_supported": true, 
-    "end_session_endpoint": "https://login.windows.net/common/oauth2/v2.0/logout", 
-    "claims_supported": ["sub", "iss", "cloud_instance_name", "cloud_instance_host_name", "cloud_graph_host_name", "msgraph_host", "aud", "exp", "iat", "auth_time", "acr", "nonce", "preferred_username", "name", "tid", "ver", "at_hash", "c_hash", "email"], 
-    "tenant_region_scope": null, 
-    "cloud_instance_name": "windows.net", 
-    "cloud_graph_host_name": "graph.windows.net", 
-    "msgraph_host": "graph.microsoft.com", 
-    "rbac_url": "https://pas.windows.net" 
+    ],
+    "subject_types_supported": ["pairwise"],
+    "id_token_signing_alg_values_supported": ["RS256"],
+    "response_types_supported": ["code", "id_token", "code id_token", "id_token token"],
+    "scopes_supported": ["openid", "profile", "email", "offline_access"],
+    "issuer": "https://login.windows.net/{tenantid}/v2.0",
+    "request_uri_parameter_supported": false,
+    "userinfo_endpoint": "https://graph.microsoft.com/oidc/userinfo",
+    "authorization_endpoint": "https://login.windows.net/common/oauth2/v2.0/authorize",
+    "http_logout_supported": true,
+    "frontchannel_logout_supported": true,
+    "end_session_endpoint": "https://login.windows.net/common/oauth2/v2.0/logout",
+    "claims_supported": ["sub", "iss", "cloud_instance_name", "cloud_instance_host_name", "cloud_graph_host_name", "msgraph_host", "aud", "exp", "iat", "auth_time", "acr", "nonce", "preferred_username", "name", "tid", "ver", "at_hash", "c_hash", "email"],
+    "tenant_region_scope": null,
+    "cloud_instance_name": "windows.net",
+    "cloud_graph_host_name": "graph.windows.net",
+    "msgraph_host": "graph.microsoft.com",
+    "rbac_url": "https://pas.windows.net"
 };

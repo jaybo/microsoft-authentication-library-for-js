@@ -16,7 +16,7 @@
  *
  *  This "Request" parameter is called when `msal-node` makes the authorization code request to the service on behalf of the app
  */
-export type AuthorizationCodeParameters = {
+export class AuthorizationCodeParameters {
     scopes?: Array<string>;
     authority?: string;
     redirectUri?: string;

@@ -103,7 +103,7 @@ export abstract class BaseClient {
      * the client to exchange for a token in acquireToken.
      * @param hashFragment
      */
-    abstract handleFragmentResponse(hashFragment: string): CodeResponse;
+    // abstract handleFragmentResponse(hashFragment: string): CodeResponse;
 
     /**
      * Given an authorization code, it will perform a token exchange using cached values from a previous call to

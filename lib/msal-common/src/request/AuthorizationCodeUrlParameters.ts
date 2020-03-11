@@ -16,7 +16,7 @@
  *
  * This "Request" parameter is called when `msal-node` makes the authorization code request to the service on behalf of the app
  */
-export type AuthorizationCodeUrlParameters = {
+export class  AuthorizationCodeUrlParameters {
     scopes?: Array<string>;
     authority?: string;
     redirectUri?: string;
@@ -24,8 +24,8 @@ export type AuthorizationCodeUrlParameters = {
     prompt?: string;
     loginHint?: string;
     domainHint?: string;
-    codeChallenge?: boolean;
-    codeChallengeMethod?: boolean;
+    codeChallenge?: string;
+    codeChallengeMethod?: string;
     claimsRequest?: string;
     nonce?: string;
     correlationId?: string;
